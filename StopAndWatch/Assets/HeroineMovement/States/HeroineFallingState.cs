@@ -12,7 +12,7 @@ public class HeroineFallingState : MonoBehaviour, IHeroineState
         timer = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_heroineController)
         {
@@ -29,7 +29,7 @@ public class HeroineFallingState : MonoBehaviour, IHeroineState
                 _heroineController.Jumping();
                 _heroineController = null;
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && timer >= _heroineController.diveTime)
+            else if (Input.GetKey(KeyCode.Space) && timer >= _heroineController.diveTime)
             {
                 _heroineController.Diving();
                 _heroineController = null;

@@ -803,9 +803,9 @@ MonoBehaviour:
   walkingSpeed: 600
   runningSpeed: 800
   fallingSpeed: 80
-  diveForce: 500
+  diveForce: 800
   jumpHeight: 10
-  diveHeight: 4
+  diveHeight: 6
   landingTime: 0.5
   diveTime: 0.5
   rotateSpeed: 100
@@ -960,7 +960,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864971556}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -977,7 +977,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1864971558
 BoxCollider:
@@ -986,7 +986,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864971556}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: da0c33746e1074940a73fa256a4fe882, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

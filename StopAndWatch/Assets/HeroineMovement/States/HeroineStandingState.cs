@@ -12,14 +12,15 @@ public class HeroineStandingState : MonoBehaviour, IHeroineState
             _heroineController = heroineController;
         _heroineController.heroine.localScale = new Vector3(1, 1, 1);
         _heroineController.currentSpeed = _heroineController.walkingSpeed;
+        _heroineController.gameObject.GetComponent<CapsuleCollider>().height = 2;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_heroineController)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 _heroineController.rigidBody.AddForce(Vector3.up * _heroineController.jumpHeight, ForceMode.Impulse);
                 _heroineController.Jumping();

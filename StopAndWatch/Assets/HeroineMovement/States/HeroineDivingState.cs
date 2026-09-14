@@ -12,7 +12,7 @@ public class HeroineDivingState : MonoBehaviour, IHeroineState
         Debug.Log("Diving ");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_heroineController)
         {

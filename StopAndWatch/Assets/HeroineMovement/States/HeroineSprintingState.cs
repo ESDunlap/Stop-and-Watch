@@ -10,7 +10,7 @@ public class HeroineSprintingState : MonoBehaviour, IHeroineState
             _heroineController = heroineController;
         _heroineController.currentSpeed = _heroineController.runningSpeed;
     }
-    void Update()
+    void FixedUpdate()
     {
         if (_heroineController)
         {
