@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class HeroineController : MonoBehaviour
 {
-    public float duckingSpeed = 1.0f;
     public float walkingSpeed = 2.0f;
     public float runningSpeed = 4.0f;
-    public float fallingSpeed = 8.0f;
     public float diveForce = 20f;
     public float jumpHeight = 8.0f;
     public float diveHeight = 4f;
@@ -29,31 +28,34 @@ public class HeroineController : MonoBehaviour
     private float hInput;
     private float turnInput;
 
+    //Unused in current build
+    public float duckingSpeed = 1.0f;
+    public float fallingSpeed = 8.0f;
+
     private void Start()
     {
         _heroineStateContext = new HeroineStateContext(this);
         _standingState = gameObject.AddComponent<HeroineStandingState>();
         _sprintingState = gameObject.AddComponent<HeroineSprintingState>();
-        _duckingState = gameObject.AddComponent<HeroineDuckingState>();
         _jumpingState = gameObject.AddComponent<HeroineJumpingState>();
-        _fallingState = gameObject.AddComponent<HeroineFallingState>();
         _divingState = gameObject.AddComponent<HeroineDivingState>();
         _landingState = gameObject.AddComponent<HeroineLandingState>();
+
+
+        //Unused in current build
+        //_duckingState = gameObject.AddComponent<HeroineDuckingState>();
+        //_fallingState = gameObject.AddComponent<HeroineFallingState>();
 
         _heroineStateContext.Transition(_standingState);
     }
 
     private void FixedUpdate()
     {
+        //Gathering inputs
         vInput = Input.GetAxis("Vertical") * currentSpeed;
         hInput = Input.GetAxis("Horizontal") * currentSpeed;
 
-        turnInput = Input.GetAxis("Horizontal") * rotateSpeed;
-
-        /*Vector3 rotation = Vector3.up * turnInput;
-        Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);*/
-
-
+        //If the dive is used
         if (dive)
         {
             Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
@@ -62,21 +64,22 @@ public class HeroineController : MonoBehaviour
             dive = false;
         }
 
+        //Using inputs to move
         if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
             rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
             rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
     }
 
+
+    //Camera x movement
     private void Update()
     {
         if (Input.GetMouseButton(1))
         {
             Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X");
             Quaternion angleRot = Quaternion.Euler(rotation * Time.deltaTime * sensitivity);
-
             rigidBody.MoveRotation(rigidBody.rotation * angleRot);
-            //rigidBody.MoveRotation(rigidBody.rotation * angleRot);
         }
     }
 
