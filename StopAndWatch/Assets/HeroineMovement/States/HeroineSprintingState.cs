@@ -15,13 +15,13 @@ public class HeroineSprintingState : MonoBehaviour, IHeroineState
         if (_heroineController)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 _heroineController.rigidBody.AddForce(Vector3.up * _heroineController.jumpHeight, ForceMode.Impulse);
                 _heroineController.Jumping();
                 _heroineController = null;
             }
-            else if (!Physics.Raycast(ray, 3.0f))
+            else if (_heroineController.rigidBody.linearVelocity.y < -5f)
             {
                 _heroineController.Jumping();
                 _heroineController = null;

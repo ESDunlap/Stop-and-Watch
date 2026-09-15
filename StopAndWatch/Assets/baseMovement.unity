@@ -637,12 +637,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420659765}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.05, z: -4.59}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.29, z: -5.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1853245459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1420659770
 MonoBehaviour:
@@ -656,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae57bf5ccb306b7459e744ff1b82b2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camOffset: {x: 0, y: 1.2, z: -2.6}
 --- !u!1 &1813447659
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,8 +799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duckingSpeed: 10
-  walkingSpeed: 600
-  runningSpeed: 800
+  walkingSpeed: 1000
+  runningSpeed: 1500
   fallingSpeed: 80
   diveForce: 800
   jumpHeight: 10
@@ -814,6 +813,7 @@ MonoBehaviour:
   rigidBody: {fileID: 1853245455}
   heroine: {fileID: 1853245459}
   currentSpeed: 0
+  sensitivity: 3000
 --- !u!54 &1853245455
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ Rigidbody:
   m_GameObject: {fileID: 1853245453}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -929,7 +929,8 @@ Transform:
   m_LocalPosition: {x: -1.3191985, y: 5.4895253, z: 0.22579351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1420659769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1864971556
@@ -1183,7 +1184,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 83544979}
-  - {fileID: 1420659769}
   - {fileID: 1864971561}
   - {fileID: 1952489291}
   - {fileID: 535106699}

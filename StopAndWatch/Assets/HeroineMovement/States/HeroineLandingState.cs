@@ -10,8 +10,8 @@ public class HeroineLandingState : MonoBehaviour, IHeroineState
     {
         if (!_heroineController)
             _heroineController = heroineController;
-        _heroineController.heroine.localScale = new Vector3(1, 0.5f, 1);
-        _heroineController.gameObject.GetComponent<CapsuleCollider>().height = 4;
+        //_heroineController.heroine.localScale = new Vector3(1, 0.5f, 1);
+        //_heroineController.gameObject.GetComponent<CapsuleCollider>().height = 4;
         timer = 0;
     }
 

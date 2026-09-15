@@ -21,6 +21,7 @@ public class HeroineController : MonoBehaviour
     public Transform heroine;
 
     public float currentSpeed;
+    public float sensitivity = 500f;
 
     private IHeroineState _standingState, _sprintingState, _duckingState, _jumpingState, _fallingState, _divingState, _landingState;
     private HeroineStateContext _heroineStateContext;
@@ -47,31 +48,36 @@ public class HeroineController : MonoBehaviour
         vInput = Input.GetAxis("Vertical") * currentSpeed;
         hInput = Input.GetAxis("Horizontal") * currentSpeed;
 
-        if (Input.GetKey(KeyCode.E))
-            turnInput = 1 * rotateSpeed;
-        else if (Input.GetKey(KeyCode.Q))
-            turnInput = -1 * rotateSpeed;
-        else
-            turnInput = 0;
+        turnInput = Input.GetAxis("Horizontal") * rotateSpeed;
 
-        Vector3 rotation = Vector3.up * turnInput;
-        Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
+        /*Vector3 rotation = Vector3.up * turnInput;
+        Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);*/
 
 
         if (dive)
         {
-            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight , Input.GetAxis("Vertical") * diveForce);
-            rigidBody.linearVelocity = new Vector3(0,0,0);
+            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
+            rigidBody.linearVelocity = new Vector3(0, 0, 0);
             rigidBody.AddRelativeForce(diveDirection);
             dive = false;
         }
 
-        if((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
+        if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
             rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
             rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
+    }
 
-        rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+    private void Update()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X");
+            Quaternion angleRot = Quaternion.Euler(rotation * Time.deltaTime * sensitivity);
+
+            rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+            //rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+        }
     }
 
     public void Standing()
