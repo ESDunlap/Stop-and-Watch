@@ -26,7 +26,7 @@ public class HeroineController : MonoBehaviour
     private HeroineStateContext _heroineStateContext;
     private float vInput;
     private float hInput;
-    private float turnInput;
+    private Material heroineMaterial;
 
     //Unused in current build
     public float duckingSpeed = 1.0f;

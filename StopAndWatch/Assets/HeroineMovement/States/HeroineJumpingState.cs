@@ -18,7 +18,6 @@ public class HeroineJumpingState : MonoBehaviour, IHeroineState
         {
             timer += Time.deltaTime;
             Ray ray = new Ray(transform.position, Vector3.down);
-            Debug.Log(_heroineController.rigidBody.linearVelocity.y);
             if (Physics.Raycast(ray, 1.5f) && _heroineController.rigidBody.linearVelocity.y < 0 && timer > 0.1f)
             {
                 _heroineController.Landing();

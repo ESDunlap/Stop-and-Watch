@@ -17,17 +17,45 @@ public class playerCamera : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             float rotateVertical = Input.GetAxis("Mouse Y");
-            if ((Mathf.Sign(rotateVertical) == 1) && (this.transform.localPosition.y) < 5 ||
-                ((Mathf.Sign(rotateVertical) == -1) && (this.transform.localPosition.y) > -1000))
-                transform.position -= Vector3.down * rotateVertical * Time.deltaTime * 100f;
+            if (!((Mathf.Sign(rotateVertical) == -1) && (this.transform.localPosition.y) > 5))
+                transform.localPosition -= Vector3.up * rotateVertical * Time.deltaTime * 100f;
+            //((Mathf.Sign(rotateVertical) == -1) && (this.transform.localPosition.y) > -1000))
         }
 
+        transform.localPosition -= Vector3.forward * Time.deltaTime * Input.GetAxis("Mouse ScrollWheel") * 1000f;
+
         //Makes sure the camera does not go into the ground or ceiling
-        Ray ray = new Ray(transform.position, Vector3.down);
-        Ray upRay = new Ray(transform.position, Vector3.up);
-        if (Physics.Raycast(ray, 0.2f) || Physics.Raycast(upRay, 5f))
-            transform.position += Vector3.up * 0.2f;
+        if (Physics.Raycast(transform.position - Vector3.up * 0.2f, Vector3.up, out var inGround) && !Physics.Raycast(transform.position - Vector3.up * 0.2f, Vector3.down))
+            transform.localPosition += Vector3.up * inGround.distance;
+        if (Physics.Raycast(transform.position, Vector3.forward, out var preventForwardInObject, 1f))
+        {
+            transform.localPosition -= Vector3.forward * preventForwardInObject.distance;
+        }
+        if (Physics.Raycast(transform.position, Vector3.back, out var preventBackInObject, 1f))
+        {
+            transform.localPosition -= Vector3.back * preventBackInObject.distance;
+        }
+        /*if (Physics.Raycast(transform.position + Vector3.up * 0.3f, Vector3.down, out var inObjectVertically, 0.5f))
+        {
+            transform.position = inObjectVertically.point + Vector3.up * 0.5f;
+        }*/
+        if (Physics.Raycast(transform.position, Vector3.up, out var preventUpInObject, 1f))
+        {
+            transform.localPosition -= Vector3.up * preventUpInObject.distance;
+        }
+        if (Physics.Raycast(transform.position, Vector3.down, out var preventDownInObject, 1f))
+        {w
+            transform.localPosition -= Vector3.down * preventDownInObject.distance;
+        }
+        //if (Physics.Raycast(transform.position + Vector3.right * 0.5f, Vector3.right)
+
+
 
         this.transform.LookAt(target);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.gameObject.transform.position = transform.position;
     }
 }
