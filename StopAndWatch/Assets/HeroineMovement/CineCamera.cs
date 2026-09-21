@@ -20,7 +20,7 @@ public class CineCamera : MonoBehaviour
         //Controls Y rotation
         if (Input.GetMouseButton(1))
         {
-            if ((cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") > -10) && (cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") < 90))
+            if ((cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") > -10) && (cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") < 88))
                 cameraControl.VerticalAxis.Value += Input.GetAxis("Mouse Y");
         }
     }

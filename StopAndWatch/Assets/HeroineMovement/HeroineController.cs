@@ -10,7 +10,7 @@ public class HeroineController : MonoBehaviour
     public float runningSpeed = 4.0f;
     public float diveForce = 20f;
     public float jumpHeight = 8.0f;
-    public float diveHeight = 4f;
+    public float diveHeight = 8f;
     public float landingTime = 0.5f;
     public float diveTime = 0.5f;
     public float rotateSpeed = 10f;
@@ -58,17 +58,19 @@ public class HeroineController : MonoBehaviour
         //If the dive is used
         if (dive)
         {
-            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
+            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, 100, Input.GetAxis("Vertical") * diveForce);
             rigidBody.linearVelocity = new Vector3(0, 0, 0);
+            Debug.Log(diveDirection);
             rigidBody.AddRelativeForce(diveDirection);
             dive = false;
         }
 
-        //Using inputs to move
         if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
             rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
             rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
+
+        //Using inputs to move
     }
 
 
