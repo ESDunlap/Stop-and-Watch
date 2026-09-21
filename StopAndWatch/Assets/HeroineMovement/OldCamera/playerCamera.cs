@@ -44,7 +44,7 @@ public class playerCamera : MonoBehaviour
             transform.localPosition -= Vector3.up * preventUpInObject.distance;
         }
         if (Physics.Raycast(transform.position, Vector3.down, out var preventDownInObject, 1f))
-        {w
+        {
             transform.localPosition -= Vector3.down * preventDownInObject.distance;
         }
         //if (Physics.Raycast(transform.position + Vector3.right * 0.5f, Vector3.right)
