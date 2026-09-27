@@ -20,7 +20,7 @@ public class HeroineController : MonoBehaviour
     public Transform heroine;
 
     public float currentSpeed;
-    public float sensitivity = 500f;
+    public float sensitivity = 5f;
 
     private IHeroineState _standingState, _sprintingState, _duckingState, _jumpingState, _fallingState, _divingState, _landingState;
     private HeroineStateContext _heroineStateContext;
@@ -58,29 +58,27 @@ public class HeroineController : MonoBehaviour
         //If the dive is used
         if (dive)
         {
-            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, 100, Input.GetAxis("Vertical") * diveForce);
+            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
             rigidBody.linearVelocity = new Vector3(0, 0, 0);
             Debug.Log(diveDirection);
             rigidBody.AddRelativeForce(diveDirection);
             dive = false;
         }
 
+        //Using inputs to move
         if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
             rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
             rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
-
-        //Using inputs to move
     }
 
-
-    //Camera x movement
     private void Update()
     {
+        //Camera x movement
         if (Input.GetMouseButton(1))
         {
             Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X");
-            Quaternion angleRot = Quaternion.Euler(rotation * Time.deltaTime * sensitivity);
+            Quaternion angleRot = Quaternion.Euler(rotation * sensitivity);
             rigidBody.MoveRotation(rigidBody.rotation * angleRot);
         }
     }
