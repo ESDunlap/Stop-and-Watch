@@ -15,8 +15,8 @@ public class CineCamera : MonoBehaviour
     void Update()
     {
         //Controls Zoom
-        if (cameraControl.Radius + Input.mouseScrollDelta.y > 0)
-            cameraControl.Radius += Input.mouseScrollDelta.y;
+        if (cameraControl.Radius - Input.mouseScrollDelta.y > 0 && cameraControl.Radius - Input.mouseScrollDelta.y < 20)
+            cameraControl.Radius -= Input.mouseScrollDelta.y;
         //Controls Y rotation
         if (Input.GetMouseButton(1))
         {
