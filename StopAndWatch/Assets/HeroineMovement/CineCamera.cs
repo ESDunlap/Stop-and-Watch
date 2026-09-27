@@ -2,7 +2,7 @@ using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+
 public class CineCamera : MonoBehaviour
 {
     private CinemachineOrbitalFollow cameraControl;
