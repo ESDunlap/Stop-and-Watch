@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/baseMovement.unity
+    path: Assets/Scenes/baseMovement.unity
     guid: c686417cc02c186419f1316b49fba4ea
   - enabled: 1
-    path: Assets/Tutorial.unity
+    path: Assets/Scenes/Tutorial.unity
     guid: e3197ffdccfb0a64782971be6ac89c5b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
