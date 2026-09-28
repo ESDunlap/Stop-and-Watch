@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/baseMovement.unity
     guid: c686417cc02c186419f1316b49fba4ea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
     guid: e3197ffdccfb0a64782971be6ac89c5b
+  - enabled: 1
+    path: Assets/Strategy.unity
+    guid: 82b0458fb510dea41a8ba113863f505a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

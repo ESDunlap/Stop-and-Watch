@@ -31,7 +31,7 @@ public class RegularObject : MonoBehaviour
 
     private void Pause()
     {
-        rb.mass = 0f;
+        rb.mass = 0.01f;
         rb.linearDamping = 1000000f;
         rb.angularDamping = 1000000f;
     }

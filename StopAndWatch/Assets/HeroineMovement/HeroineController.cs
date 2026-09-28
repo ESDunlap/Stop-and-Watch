@@ -80,7 +80,7 @@ public class HeroineController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X");
-            Quaternion angleRot = Quaternion.Euler(rotation * Time.deltaTime * sensitivity);
+            Quaternion angleRot = Quaternion.Euler(rotation * sensitivity);
             rigidBody.MoveRotation(rigidBody.rotation * angleRot);
         }
     }
