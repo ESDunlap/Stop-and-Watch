@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RegularObject : MonoBehaviour
@@ -25,13 +26,16 @@ public class RegularObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
+        {
+            rb.linearVelocity = new Vector3(0, 0, 0);
             Unpause();
+        }
     }
 
     private void Pause()
     {
-        rb.mass = 0f;
+        rb.mass = 0.01f;
         rb.linearDamping = 1000000f;
         rb.angularDamping = 1000000f;
     }
@@ -41,6 +45,6 @@ public class RegularObject : MonoBehaviour
         rb.mass = startingWeight;
         rb.linearDamping = startingDamping;
         rb.angularDamping = startingAngleDamping;
-        rb.AddForce(0.1f, 0.1f, 0.1f);
+        rb.AddForce(0f, 0.1f, 0f);
     }
 }
