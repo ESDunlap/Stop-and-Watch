@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class CineCamera : MonoBehaviour
 {
     private CinemachineOrbitalFollow cameraControl;
+    public float keyboardSensitivity = 50f;
 
     void Start()
     {
@@ -22,6 +23,12 @@ public class CineCamera : MonoBehaviour
         {
             if ((cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") > -10) && (cameraControl.VerticalAxis.Value + Input.GetAxis("Mouse Y") < 88))
                 cameraControl.VerticalAxis.Value += Input.GetAxis("Mouse Y");
+        }
+        else
+        {
+            if ((cameraControl.VerticalAxis.Value + Input.GetAxis("Debug Vertical") * Time.deltaTime * keyboardSensitivity > -10) 
+                && (cameraControl.VerticalAxis.Value + Input.GetAxis("Debug Vertical") * Time.deltaTime * keyboardSensitivity < 88))
+                cameraControl.VerticalAxis.Value += Input.GetAxis("Debug Vertical") * Time.deltaTime * keyboardSensitivity;
         }
     }
 }
