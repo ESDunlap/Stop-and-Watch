@@ -40,6 +40,13 @@ public class Elevator : MonoBehaviour
         currentRailing = 0;
     }
 
+    public movementStyle GiveCurrentMovement()
+    {
+        Debug.Log(currentRailing);
+        Debug.Log(movementStyles[currentRailing]);
+        return movementStyles[currentRailing];
+    }
+
     public void FixedUpdate()
     {
         if (currentRailing >= currentMovement.Count)
