@@ -14,9 +14,9 @@ public class SidewaysMovement : MonoBehaviour, IElevatorBehaviour
     {
         railings = GameObject.CreatePrimitive(PrimitiveType.Cube);
         railings.transform.parent = transform;
-        railings.transform.localPosition = elevator.railingConstructionLocation + new Vector3(elevator.distance[elevator.currentRailing] / 2, 0, elevator.elevatorHub.transform.localScale.z / 2);
+        railings.transform.localPosition = elevator.railingConstructionLocation + new Vector3(elevator.distance[elevator.currentRailing] / 2, 0, elevator.elevatorObject.transform.localScale.z / 2);
         railings.transform.localScale = new Vector3(elevator.distance[elevator.currentRailing], 1, 0.5f);
-        startPosition = elevator.railingConstructionLocation + elevator.elevatorHub.transform.position;
+        startPosition = elevator.railingConstructionLocation + elevator.elevatorObject.transform.position;
         elevator.railingConstructionLocation += new Vector3(elevator.distance[elevator.currentRailing], 0, 0);
     }
 
@@ -39,20 +39,20 @@ public class SidewaysMovement : MonoBehaviour, IElevatorBehaviour
         }
         else if (goingRight)
         {
-            elevator.elevatorHub.transform.position += new Vector3(speed * Time.fixedDeltaTime, 0, 0);
-            if (elevator.elevatorHub.transform.position.x > endPosition.x)
+            elevator.elevatorMovement.transform.position += new Vector3(speed * Time.fixedDeltaTime, 0, 0);
+            if (elevator.elevatorMovement.transform.position.x > endPosition.x)
             {
-                elevator.elevatorHub.transform.position = endPosition;
+                elevator.elevatorMovement.transform.position = endPosition;
                 goingRight = false;
                 timeWaited = 0;
             }
         }
         else
         {
-            elevator.elevatorHub.transform.position -= new Vector3(speed * Time.fixedDeltaTime, 0, 0);
-            if (elevator.elevatorHub.transform.position.x < startPosition.x)
+            elevator.elevatorMovement.transform.position -= new Vector3(speed * Time.fixedDeltaTime, 0, 0);
+            if (elevator.elevatorMovement.transform.position.x < startPosition.x)
             {
-                elevator.elevatorHub.transform.position = startPosition;
+                elevator.elevatorMovement.transform.position = startPosition;
                 goingRight = true;
                 timeWaited = 0;
             }

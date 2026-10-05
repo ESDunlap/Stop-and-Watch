@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7180083422852626477}
   - component: {fileID: 475220286983587528}
   - component: {fileID: 1038275486030622653}
+  - component: {fileID: 3699029317828870178}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -157,9 +158,9 @@ MonoBehaviour:
   walkingSpeed: 1000
   runningSpeed: 1500
   diveForce: 800
-  jumpHeight: 10
-  diveHeight: 20
-  landingTime: 0.5
+  jumpHeight: 8
+  diveHeight: 8
+  landingTime: 0.1
   diveTime: 0.5
   rotateSpeed: 100
   maxSpeed: 10
@@ -168,8 +169,7 @@ MonoBehaviour:
   heroine: {fileID: 8394475892045207943}
   currentSpeed: 0
   sensitivity: 5
-  duckingSpeed: 10
-  fallingSpeed: 80
+  keyboardSensitivity: 150
 --- !u!114 &1038275486030622653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +180,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fd99ca8d1370eb41bb187014bb6acab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3699029317828870178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959754373485550298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb99945f35a69b84ba5aeafd53304a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8581337963808915525
@@ -565,3 +577,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0344d507574e4b54f94ffea4adb1cbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyboardSensitivity: 50

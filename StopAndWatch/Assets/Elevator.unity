@@ -119,24 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &137590317 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4439033501405640345, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-  m_PrefabInstance: {fileID: 240383346}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &137590324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137590317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052722f23af6a0d4b8c9aab64af090c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Elevator: {fileID: 0}
 --- !u!1001 &240383346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8999996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
       propertyPath: m_LocalPosition.z
@@ -185,57 +167,83 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: distance.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: 'distance.Array.data[0]'
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: 'distance.Array.data[1]'
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: 'distance.Array.data[2]'
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: movementStyles.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: 'movementStyles.Array.data[1]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: 'movementStyles.Array.data[2]'
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6828532996515663170, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: da0c33746e1074940a73fa256a4fe882, type: 2}
     - target: {fileID: 7283109963835642824, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
       propertyPath: m_Name
       value: ElevatorHub
       objectReference: {fileID: 0}
-    - target: {fileID: 8861778030495932552, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+--- !u!1001 &293346341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.156176
       objectReference: {fileID: 0}
-    - target: {fileID: 8861778030495932552, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.5910225
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: distance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: 'distance.Array.data[0]'
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071036263225077197, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: movementStyles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283109963835642824, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_Name
+      value: ElevatorHub (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4439033501405640345, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 137590324}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
 --- !u!1001 &540740120
 PrefabInstance:
@@ -691,10 +699,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 588715617872904322, guid: 7951cbd2d995e7646bf2a7ed5583b970, type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2412746124994275815, guid: 7951cbd2d995e7646bf2a7ed5583b970, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.59
@@ -814,3 +818,4 @@ SceneRoots:
   - {fileID: 847513447}
   - {fileID: 1867370243}
   - {fileID: 240383346}
+  - {fileID: 293346341}

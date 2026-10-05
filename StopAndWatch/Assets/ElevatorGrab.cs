@@ -14,12 +14,12 @@ public class ElevatorGrab : MonoBehaviour
 
     void OnCollisionStay(Collision other)
     {
-        if (Elevator.GiveCurrentMovement() == movementStyle.Sideways)
+        if (Elevator.GiveCurrentMovement() == movementStyle.Sideways || Elevator.goingForward == true)
         {
             currentlyGrabbed.Add(other.gameObject);
             other.gameObject.transform.SetParent(transform);
         }
-        if (Elevator.GiveCurrentMovement() == movementStyle.Upwards)
+        else if (currentlyGrabbed.Contains(other.gameObject))
         {
             currentlyGrabbed.Remove(other.gameObject);
             other.gameObject.transform.SetParent(null);
@@ -28,7 +28,10 @@ public class ElevatorGrab : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        currentlyGrabbed.Remove(other.gameObject);
-        other.gameObject.transform.SetParent(null);
+        if (currentlyGrabbed.Contains(other.gameObject))
+        {
+            currentlyGrabbed.Remove(other.gameObject);
+            other.gameObject.transform.SetParent(null);
+        }
     }
 }

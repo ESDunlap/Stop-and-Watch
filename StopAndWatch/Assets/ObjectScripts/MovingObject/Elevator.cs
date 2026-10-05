@@ -13,9 +13,11 @@ public class Elevator : MonoBehaviour
     public float[] distance;
     public float waitingTime;
     public movementStyle[] movementStyles;
-    public GameObject elevatorHub;
+    public GameObject elevatorMovement;
+    public GameObject elevatorObject;
     public Vector3 railingConstructionLocation = new Vector3(0,0,0);
     public int currentRailing=0;
+    public bool goingForward = true;
     private List<IElevatorBehaviour> currentMovement = new List<IElevatorBehaviour>();
     private bool currentlyFrozen = false;
 
@@ -42,8 +44,16 @@ public class Elevator : MonoBehaviour
 
     public movementStyle GiveCurrentMovement()
     {
-        Debug.Log(currentRailing);
-        Debug.Log(movementStyles[currentRailing]);
+        if (currentRailing >= currentMovement.Count)
+        {
+            currentRailing = currentMovement.Count - 1;
+            goingForward = false;
+        }
+        if (currentRailing < 0)
+        {
+            currentRailing = 0;
+            goingForward = true;
+        }
         return movementStyles[currentRailing];
     }
 
@@ -52,10 +62,12 @@ public class Elevator : MonoBehaviour
         if (currentRailing >= currentMovement.Count)
         {
             currentRailing = currentMovement.Count - 1;
+            goingForward = false;
         }
         if (currentRailing < 0)
         {
             currentRailing = 0;
+            goingForward = true;
         }
         if (!currentlyFrozen)
             currentMovement[currentRailing].Move(this);
