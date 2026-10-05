@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum movementStyle
@@ -8,44 +10,67 @@ public enum movementStyle
 public class Elevator : MonoBehaviour
 {
     public float speed;
-    public float distance;
+    public float[] distance;
     public float waitingTime;
-    public movementStyle movementStyle;
-    public Vector3 startPosition;
-    public GameObject elevatorHub;
-    private GameObject railings;
-    private IElevatorBehaviour currentMovement;
+    public movementStyle[] movementStyles;
+    public GameObject elevatorMovement;
+    public GameObject elevatorObject;
+    public Vector3 railingConstructionLocation = new Vector3(0,0,0);
+    public int currentRailing=0;
+    public bool goingForward = true;
+    private List<IElevatorBehaviour> currentMovement = new List<IElevatorBehaviour>();
     private bool currentlyFrozen = false;
 
     public void Awake()
     {
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
-        if(movementStyle == movementStyle.Upwards)
+        foreach (float i in distance)
         {
-            railings = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            railings.transform.parent = transform;
-            railings.transform.localPosition = new Vector3(0, distance/2, elevatorHub.transform.localScale.z/2);
-            railings.transform.localScale = new Vector3(1, distance, 0.5f);
-            startPosition = elevatorHub.transform.position;
-            currentMovement = this.gameObject.AddComponent<UpwardsMovement>();
-            //currentMovement.CreateRailing(this);
+            if (movementStyles[currentRailing] == movementStyle.Upwards)
+            {
+                currentMovement.Add(this.gameObject.AddComponent<UpwardsMovement>());
+                currentMovement[currentRailing].CreateRailing(this);
+            }
+            else if (movementStyles[currentRailing] == movementStyle.Sideways)
+            {
+                currentMovement.Add(this.gameObject.AddComponent<SidewaysMovement>());
+                currentMovement[currentRailing].CreateRailing(this);
+            }
+            currentRailing++;
         }
-        else if (movementStyle == movementStyle.Sideways)
+        currentRailing = 0;
+    }
+
+    public movementStyle GiveCurrentMovement()
+    {
+        if (currentRailing >= currentMovement.Count)
         {
-            railings = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            railings.transform.parent = transform;
-            railings.transform.localPosition = new Vector3(distance/2, 1, elevatorHub.transform.localScale.z/2);
-            railings.transform.localScale = new Vector3(distance, 1, 0.5f);
-            startPosition = elevatorHub.transform.position;
-            currentMovement = this.gameObject.AddComponent<SidewaysMovement>();
+            currentRailing = currentMovement.Count - 1;
+            goingForward = false;
         }
+        if (currentRailing < 0)
+        {
+            currentRailing = 0;
+            goingForward = true;
+        }
+        return movementStyles[currentRailing];
     }
 
     public void FixedUpdate()
     {
+        if (currentRailing >= currentMovement.Count)
+        {
+            currentRailing = currentMovement.Count - 1;
+            goingForward = false;
+        }
+        if (currentRailing < 0)
+        {
+            currentRailing = 0;
+            goingForward = true;
+        }
         if (!currentlyFrozen)
-            currentMovement.Move(this);
+            currentMovement[currentRailing].Move(this);
     }
 
     public void OnCollisionEnter(Collision collision)

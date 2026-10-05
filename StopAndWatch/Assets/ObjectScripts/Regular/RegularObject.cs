@@ -7,6 +7,7 @@ public class RegularObject : MonoBehaviour
     private float startingWeight;
     private float startingDamping;
     private float startingAngleDamping;
+    private bool currentlyPaused = false;
 
     private void Awake()
     {
@@ -14,8 +15,6 @@ public class RegularObject : MonoBehaviour
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
         startingWeight = rb.mass;
-        startingDamping = rb.linearDamping;
-        startingAngleDamping = rb.angularDamping;
     }
 
     private void OnDisable()
@@ -24,9 +23,9 @@ public class RegularObject : MonoBehaviour
         TimeBus.Unsubscribe(TimeType.UNPAUSE, Unpause);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") && currentlyPaused)
         {
             rb.linearVelocity = new Vector3(0, 0, 0);
             Unpause();
@@ -35,9 +34,15 @@ public class RegularObject : MonoBehaviour
 
     private void Pause()
     {
+        startingWeight = rb.mass;
+        startingDamping = rb.linearDamping;
+        startingAngleDamping = rb.angularDamping;
+        rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.mass = 0.01f;
         rb.linearDamping = 1000000f;
         rb.angularDamping = 1000000f;
+        currentlyPaused = true;
     }
 
     private void Unpause()
@@ -45,6 +50,9 @@ public class RegularObject : MonoBehaviour
         rb.mass = startingWeight;
         rb.linearDamping = startingDamping;
         rb.angularDamping = startingAngleDamping;
+        rb.freezeRotation = false;
+        rb.constraints = RigidbodyConstraints.None;
         rb.AddForce(0f, 0.1f, 0f);
+        currentlyPaused = false;
     }
 }
