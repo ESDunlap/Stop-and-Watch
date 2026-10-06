@@ -27,8 +27,8 @@ public class RegularObject : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player") && currentlyPaused)
         {
-            rb.linearVelocity = new Vector3(0, 0, 0);
             Unpause();
+            rb.linearVelocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -37,7 +37,6 @@ public class RegularObject : MonoBehaviour
         startingWeight = rb.mass;
         startingDamping = rb.linearDamping;
         startingAngleDamping = rb.angularDamping;
-        rb.freezeRotation = true;
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.mass = 0.01f;
         rb.linearDamping = 1000000f;
@@ -50,7 +49,6 @@ public class RegularObject : MonoBehaviour
         rb.mass = startingWeight;
         rb.linearDamping = startingDamping;
         rb.angularDamping = startingAngleDamping;
-        rb.freezeRotation = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.AddForce(0f, 0.1f, 0f);
         currentlyPaused = false;

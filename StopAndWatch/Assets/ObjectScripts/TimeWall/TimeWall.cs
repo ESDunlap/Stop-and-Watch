@@ -19,6 +19,14 @@ public class TimeWall : MonoBehaviour
         material.color = new Color(0, 0, 1f, 0.5f);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), box);
+        }
+    }
+
     void Pause()
     {
         box.enabled = true;

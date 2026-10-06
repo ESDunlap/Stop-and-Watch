@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/baseMovement.unity
     guid: c686417cc02c186419f1316b49fba4ea
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial.unity
     guid: e3197ffdccfb0a64782971be6ac89c5b
   - enabled: 1
