@@ -10,7 +10,6 @@ public class HeroineStandingState : MonoBehaviour, IHeroineState
     {
         if (!_heroineController)
             _heroineController = heroineController;
-        _heroineController.heroine.localScale = new Vector3(1, 1, 1);
         _heroineController.currentSpeed = _heroineController.walkingSpeed;
         _heroineController.gameObject.GetComponent<CapsuleCollider>().height = 2;
     }

@@ -21,16 +21,14 @@ public class HeroineController : MonoBehaviour
 
     public float currentSpeed;
     public float sensitivity = 5f;
+    public float keyboardSensitivity = 50f;
 
     private IHeroineState _standingState, _sprintingState, _duckingState, _jumpingState, _fallingState, _divingState, _landingState;
     private HeroineStateContext _heroineStateContext;
     private float vInput;
     private float hInput;
     private Material heroineMaterial;
-
-    //Unused in current build
-    public float duckingSpeed = 1.0f;
-    public float fallingSpeed = 8.0f;
+    private float mouseMovement;
 
     private void Start()
     {
@@ -61,25 +59,37 @@ public class HeroineController : MonoBehaviour
             Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
             rigidBody.linearVelocity = new Vector3(0, 0, 0);
             Debug.Log(diveDirection);
-            rigidBody.AddRelativeForce(diveDirection);
+            rigidBody.AddRelativeForce(diveDirection, ForceMode.Impulse);
             dive = false;
         }
 
         //Using inputs to move
         if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
-            rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
+            rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput, ForceMode.Impulse);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
-            rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
+            rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput, ForceMode.Impulse);
+
+        //Camera x movement
+        if (mouseMovement != 0)
+        {
+            Vector3 rotation = Vector3.up * mouseMovement;
+            Quaternion angleRot = Quaternion.Euler(rotation * sensitivity);
+            rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+            mouseMovement = 0;
+        }
+        else
+        {
+            Vector3 rotation = Vector3.up * Input.GetAxis("Debug Horizontal");
+            Quaternion angleRot = Quaternion.Euler(rotation * keyboardSensitivity * Time.deltaTime);
+            rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+        }
     }
 
     private void Update()
     {
-        //Camera x movement
         if (Input.GetMouseButton(1))
         {
-            Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X");
-            Quaternion angleRot = Quaternion.Euler(rotation * sensitivity);
-            rigidBody.MoveRotation(rigidBody.rotation * angleRot);
+            mouseMovement += Input.GetAxis("Mouse X");
         }
     }
 

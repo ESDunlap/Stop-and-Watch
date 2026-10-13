@@ -16,7 +16,6 @@ public class HeroineFallingState : MonoBehaviour, IHeroineState
     {
         if (_heroineController)
         {
-            _heroineController.rigidBody.AddForce(Vector3.down * _heroineController.fallingSpeed * Time.deltaTime, ForceMode.Impulse);
             timer += Time.deltaTime;
             Ray ray = new Ray(transform.position, Vector3.down);
             if (Physics.Raycast(ray, 1.5f) && _heroineController.rigidBody.linearVelocity.y <= 0.1f)
