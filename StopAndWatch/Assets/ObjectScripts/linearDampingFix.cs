@@ -5,7 +5,7 @@ public class linearDampingFix : MonoBehaviour
     private Rigidbody rb;
     private float linearDampingHorizontal;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         linearDampingHorizontal = rb.linearDamping;

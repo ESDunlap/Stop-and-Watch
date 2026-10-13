@@ -20,6 +20,8 @@ public class Elevator : MonoBehaviour
     public bool goingForward = true;
     private List<IElevatorBehaviour> currentMovement = new List<IElevatorBehaviour>();
     private bool currentlyFrozen = false;
+    [HideInInspector] public List<GameObject> allRailings = new List<GameObject>();
+    [HideInInspector] public List<Material> allRailingMaterial = new List<Material>();
 
     public void Awake()
     {
@@ -40,6 +42,15 @@ public class Elevator : MonoBehaviour
             currentRailing++;
         }
         currentRailing = 0;
+        foreach (GameObject railing in allRailings)
+        {
+            allRailingMaterial.Add(railing.GetComponent<MeshRenderer>().material);
+        }
+        foreach (Material railingMaterial in allRailingMaterial)
+        {
+            railingMaterial.DisableKeyword("_EMISSION");
+        }
+
     }
 
     public movementStyle GiveCurrentMovement()
@@ -84,10 +95,18 @@ public class Elevator : MonoBehaviour
     void Pause()
     {
         currentlyFrozen = true;
+        foreach (Material railingMaterial in allRailingMaterial)
+        {
+            railingMaterial.EnableKeyword("_EMISSION");
+        }
     }
 
     void Unpause()
     {
         currentlyFrozen = false;
+        foreach (Material railingMaterial in allRailingMaterial)
+        {
+            railingMaterial.DisableKeyword("_EMISSION");
+        }
     }
 }

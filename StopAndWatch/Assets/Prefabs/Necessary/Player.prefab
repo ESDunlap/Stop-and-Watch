@@ -155,11 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d42d67e5f47044ab2f5e8de5191b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 1000
-  runningSpeed: 1500
-  diveForce: 800
+  walkingSpeed: 20
+  runningSpeed: 30
+  diveForce: 20
   jumpHeight: 8
-  diveHeight: 8
+  diveHeight: 3
   landingTime: 0.1
   diveTime: 0.5
   rotateSpeed: 100
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7de3aefa901374ba29464584a3109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraRadius: 0.4
+  CameraRadius: 1
   Decollision:
     Enabled: 1
     ObstacleLayers:

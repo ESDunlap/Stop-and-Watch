@@ -59,15 +59,15 @@ public class HeroineController : MonoBehaviour
             Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
             rigidBody.linearVelocity = new Vector3(0, 0, 0);
             Debug.Log(diveDirection);
-            rigidBody.AddRelativeForce(diveDirection);
+            rigidBody.AddRelativeForce(diveDirection, ForceMode.Impulse);
             dive = false;
         }
 
         //Using inputs to move
         if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
-            rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput);
+            rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput, ForceMode.Impulse);
         if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
-            rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput);
+            rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput, ForceMode.Impulse);
 
         //Camera x movement
         if (mouseMovement != 0)
