@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/baseMovement.unity
     guid: c686417cc02c186419f1316b49fba4ea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
     guid: e3197ffdccfb0a64782971be6ac89c5b
+  - enabled: 1
+    path: Assets/NewTutorial.unity
+    guid: 34760719e957f9f458dda991ef19b2fe
   - enabled: 1
     path: Assets/Scenes/FirstLevel.unity
     guid: 6ab8ee05de8db5c408e6a3a46edb7ede

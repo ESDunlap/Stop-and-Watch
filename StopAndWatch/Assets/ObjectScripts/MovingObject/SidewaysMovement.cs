@@ -16,9 +16,10 @@ public class SidewaysMovement : MonoBehaviour, IElevatorBehaviour
         railingPrefab = Resources.Load("Railing") as GameObject;
         railings = Instantiate(railingPrefab);
         railings.transform.parent = transform;
-        railings.transform.localPosition = elevator.railingConstructionLocation + new Vector3(elevator.distance[elevator.currentRailing]/2,
-        0,
-        elevator.elevatorObject.transform.localScale.z / 2);
+        railings.transform.localPosition = elevator.railingConstructionLocation + new Vector3(
+        elevator.distance[elevator.currentRailing]/2, //X
+        0, //Y
+        elevator.elevatorObject.transform.localScale.z/2); //Z
         railings.transform.localScale = new Vector3(elevator.distance[elevator.currentRailing], 1, 0.5f);
         startPosition = elevator.railingConstructionLocation + elevator.elevatorObject.transform.position;
         elevator.railingConstructionLocation += new Vector3(elevator.distance[elevator.currentRailing], 0, 0);

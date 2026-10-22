@@ -3,11 +3,11 @@ using UnityEngine;
 public class TimeWall : MonoBehaviour
 {
     private BoxCollider box;
-    private Material material;
+    private Material _material;
     private void OnEnable()
     {
         box = GetComponent<BoxCollider>();
-        material = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+        _material = gameObject.GetComponent<MeshRenderer>().material;
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
     }
@@ -16,7 +16,6 @@ public class TimeWall : MonoBehaviour
     {
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
-        material.color = new Color(0, 0, 1f, 0.5f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,12 +29,14 @@ public class TimeWall : MonoBehaviour
     void Pause()
     {
         box.enabled = true;
-        material.color = new Color(1f, 0, 0, 0.5f);
+        _material.color = new Color(1f, 0, 0, 0.5f);
+        _material.DisableKeyword("_EMISSION");
     }
 
     void Unpause()
     {
         box.enabled = false;
-        material.color = new Color(0, 0, 1f, 0.5f);
+        _material.color = new Color(0, 0, 1f, 0.5f);
+        _material.EnableKeyword("_EMISSION");
     }
 }
