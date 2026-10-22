@@ -50,8 +50,10 @@ public class HeroineController : MonoBehaviour
     private void FixedUpdate()
     {
         //Gathering inputs
-        vInput = Input.GetAxis("Vertical") * currentSpeed;
-        hInput = Input.GetAxis("Horizontal") * currentSpeed;
+        vInput = Input.GetAxis("Vertical");
+        hInput = Input.GetAxis("Horizontal");
+        Vector3 completeMovement = new Vector3(hInput, 0, vInput).normalized;
+        
 
         //If the dive is used
         if (dive)
@@ -64,10 +66,9 @@ public class HeroineController : MonoBehaviour
         }
 
         //Using inputs to move
-        if ((rigidBody.linearVelocity.x * Input.GetAxis("Vertical")) < maxSpeed)
-            rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput, ForceMode.Impulse);
-        if ((rigidBody.linearVelocity.z * Input.GetAxis("Horizontal")) < maxSpeed)
-            rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput, ForceMode.Impulse);
+        /*rigidBody.AddForce(this.transform.forward * Time.fixedDeltaTime * vInput, ForceMode.Impulse);
+        rigidBody.AddForce(this.transform.right * Time.fixedDeltaTime * hInput, ForceMode.Impulse);*/
+        rigidBody.AddRelativeForce(completeMovement*currentSpeed*Time.fixedDeltaTime, ForceMode.Impulse);
 
         //Camera x movement
         if (mouseMovement != 0)
