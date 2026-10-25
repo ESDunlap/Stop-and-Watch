@@ -19,7 +19,6 @@ public class TimePauseAura : MonoBehaviour
 
     void Pause()
     {
-        Debug.Log("test");
         aura.SetActive(true);
     }
 
