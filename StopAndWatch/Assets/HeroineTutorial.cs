@@ -2,13 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum tutorialChecks
+{
+    noCheck,
+    movementCheck,
+    sprintCheck,
+    turnCheck,
+    pauseCheck,
+    jumpCheck,
+    unpauseCheck
+}
+
 public class HeroineTutorial : MonoBehaviour
 {
-    private bool movementTutorial = true;
-    private bool sprintTutorial = false;
-    private bool turnTutorial = false;
-    private bool pauseTutorial = false;
-    private bool jumpTutorial = false;
+    private tutorialChecks currentTutorial = tutorialChecks.movementCheck;
     private Quaternion currentAngle;
     [SerializeField] private GameObject textBox;
     [SerializeField] private GameObject checkMark;
@@ -16,49 +23,76 @@ public class HeroineTutorial : MonoBehaviour
     [SerializeField] private GameObject turnCheck;
     [SerializeField] private GameObject pauseCheck;
     [SerializeField] private GameObject jumpCheck;
+    [SerializeField] private GameObject unpauseCheck;
     [SerializeField] private TextMeshProUGUI _text;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool currentlyPaused = false;
+    private void Awake()
+    {
+        TimeBus.Subscribe(TimeType.PAUSE, Pause);
+        TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
+        currentAngle = transform.rotation;
+
+    }
+
+    private void Pause()
+    {
+        currentlyPaused = true;
+    }
+
+    private void Unpause()
+    {
+        currentlyPaused = false;
+    }
+
 
     void Update()
     {
-        if (movementTutorial)
+        if (currentTutorial == tutorialChecks.movementCheck)
         {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 checkMark.SetActive(true);
-                movementTutorial = false;
+                currentTutorial = tutorialChecks.noCheck;
             }
         }
-        else if (sprintTutorial)
+        else if (currentTutorial == tutorialChecks.sprintCheck)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (GetComponent<HeroineController>().currentSpeed == GetComponent<HeroineController>().runningSpeed)
             {
                 checkMark.SetActive(true);
-                sprintTutorial = false;
+                currentTutorial = tutorialChecks.noCheck;
             }
         }
-        else if (turnTutorial)
+        else if (currentTutorial == tutorialChecks.turnCheck)
         {
             if (currentAngle != transform.rotation)
             {
                 checkMark.SetActive(true);
-                turnTutorial = false;
+                currentTutorial = tutorialChecks.noCheck;
             }
         }
-        else if (pauseTutorial)
+        else if (currentTutorial == tutorialChecks.pauseCheck)
         {
-            if (Input.GetKey(KeyCode.T))
+            if (currentlyPaused)
             {
                 checkMark.SetActive(true);
-                pauseTutorial = false;
+                currentTutorial = tutorialChecks.noCheck;
             }
         }
-        else if (jumpTutorial)
+        else if (currentTutorial == tutorialChecks.jumpCheck)
         {
             if (GetComponent<HeroineController>().dive)
             {
                 checkMark.SetActive(true);
-                jumpTutorial = false;
+                currentTutorial = tutorialChecks.noCheck;
+            }
+        }
+        else if (currentTutorial == tutorialChecks.unpauseCheck)
+        {
+            if (!currentlyPaused)
+            {
+                checkMark.SetActive(true);
+                currentTutorial = tutorialChecks.noCheck;
             }
         }
 
@@ -70,26 +104,41 @@ public class HeroineTutorial : MonoBehaviour
         {
             textBox.GetComponent<Animation>().Play("AddText");
             _text.text = "Hold down Shift in order to sprint";
-            sprintTutorial = true;
+            currentTutorial = tutorialChecks.sprintCheck;
+            sprintCheck.SetActive(false);
         }
         else if (collision.gameObject == turnCheck)
         {
             textBox.GetComponent<Animation>().Play("AddText");
             _text.text = "Use the arrow keys or right click to turn";
-            turnTutorial = true;
-            currentAngle = transform.rotation;
+            currentTutorial = tutorialChecks.turnCheck;
+            turnCheck.SetActive(false);
         }
         else if (collision.gameObject == pauseCheck)
         {
             textBox.GetComponent<Animation>().Play("AddText");
             _text.text = "Press T in order to pause time";
-            pauseTutorial = true;
+            currentTutorial = tutorialChecks.pauseCheck;
+            pauseCheck.SetActive(false);
         }
         else if (collision.gameObject == jumpCheck)
         {
             textBox.GetComponent<Animation>().Play("AddText");
             _text.text = "Press Space to jump. Press it again to dive";
-            jumpTutorial = true;
+            currentTutorial = tutorialChecks.jumpCheck;
+            jumpCheck.SetActive(false);
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "TimeWall")
+        {
+            textBox.GetComponent<Animation>().Play("AddText");
+            _text.text = "Press T again in order to unpause time";
+            currentTutorial = tutorialChecks.unpauseCheck;
         }
     }
 }

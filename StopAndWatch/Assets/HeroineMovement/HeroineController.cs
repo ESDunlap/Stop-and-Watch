@@ -14,7 +14,7 @@ public class HeroineController : MonoBehaviour
     public float landingTime = 0.5f;
     public float diveTime = 0.5f;
     public float rotateSpeed = 10f;
-    public float maxSpeed;
+
     public bool dive = false;
     public Rigidbody rigidBody;
     public Transform heroine;
