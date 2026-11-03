@@ -23,7 +23,6 @@ public class HeroineTutorial : MonoBehaviour
     [SerializeField] private GameObject turnCheck;
     [SerializeField] private GameObject pauseCheck;
     [SerializeField] private GameObject jumpCheck;
-    [SerializeField] private GameObject unpauseCheck;
     [SerializeField] private TextMeshProUGUI _text;
     private bool currentlyPaused = false;
     private void Awake()
