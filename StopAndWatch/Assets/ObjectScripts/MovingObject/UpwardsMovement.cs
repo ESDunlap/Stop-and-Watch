@@ -11,6 +11,7 @@ public class UpwardsMovement : MonoBehaviour, IElevatorBehaviour
     private float timeWaited = 100f;
     private Vector3 startPosition;
     private GameObject railings;
+    private ElevatorNoise elevatorNoise;
 
     public void CreateRailing(Elevator elevator)
     {
@@ -25,6 +26,7 @@ public class UpwardsMovement : MonoBehaviour, IElevatorBehaviour
         startPosition = elevator.railingConstructionLocation + elevator.elevatorObject.transform.position;
         elevator.railingConstructionLocation += new Vector3(0, elevator.distance[elevator.currentRailing], 0);
         elevator.allRailings.Add(railings);
+        elevatorNoise = GetComponent<ElevatorNoise>();
     }
 
     public void Move(Elevator elevator)
@@ -35,6 +37,7 @@ public class UpwardsMovement : MonoBehaviour, IElevatorBehaviour
 
         if (timeWaited < timeToWait)
         {
+            elevatorNoise.stopSound();
             timeWaited += Time.fixedDeltaTime;
             if (timeWaited > timeToWait)
             {
@@ -42,10 +45,12 @@ public class UpwardsMovement : MonoBehaviour, IElevatorBehaviour
                     elevator.currentRailing++;
                 else
                     elevator.currentRailing--;
+
             }
         }
         else if (goingUp)
         {
+            elevatorNoise.playSound();
             elevator.elevatorMovement.transform.position += new Vector3(0,speed * Time.fixedDeltaTime, 0);
             if (elevator.elevatorMovement.transform.position.y > endPosition.y)
             {
@@ -56,6 +61,7 @@ public class UpwardsMovement : MonoBehaviour, IElevatorBehaviour
         }
         else
         {
+            elevatorNoise.playSound();
             elevator.elevatorMovement.transform.position -= new Vector3(0, speed * Time.fixedDeltaTime, 0);
             if (elevator.elevatorMovement.transform.position.y < startPosition.y)
             {

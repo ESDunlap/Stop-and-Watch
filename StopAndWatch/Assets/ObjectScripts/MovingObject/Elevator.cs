@@ -89,6 +89,7 @@ public class Elevator : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             Unpause();
+            GetComponent<ElevatorNoise>().Unpause();
         }
     }
 

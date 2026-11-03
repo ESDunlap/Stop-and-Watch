@@ -26,9 +26,4 @@ public class PauseMenu : MonoBehaviour
         audioMixer.SetFloat("MasterPitch", 0);
     }
 
-    void UnpauseMusic()
-    {
-        audioMixer.SetFloat("MasterPitch", 1);
-    }
-
 }
