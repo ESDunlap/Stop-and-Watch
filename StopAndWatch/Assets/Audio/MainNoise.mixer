@@ -20,7 +20,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PausedObjects
+  m_Name: Background
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: ad2854231fccb57488f59afd87b27b97
   m_Children: []
@@ -39,7 +39,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UnPausedObjects
+  m_Name: Scene
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 5dbeea0905ffb544d9a3fff6188d4ec2
   m_Children: []
@@ -58,7 +58,7 @@ AudioMixerController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackgroundNoise
+  m_Name: MainNoise
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -68,14 +68,18 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: db57d858c0ab8e447a26f56eadc9b5d6
+    name: Paused
+  - guid: 19754358ec16c0843acb39b6631b9487
+    name: BackgroundVolume
   - guid: d70f6507e31f7e04ab77df9022e0ad9a
     name: MasterVolume
   - guid: 6107faf66208f79418450d7ff6d0dfcc
     name: MasterPitch
-  - guid: db57d858c0ab8e447a26f56eadc9b5d6
-    name: Paused
   - guid: a777f44a063b5534299e76bf3f501cfc
     name: Unpaused
+  - guid: 4fa9f6431045430459330ea0255776d8
+    name: SceneVolume
   m_AudioMixerGroupViews:
   - guids:
     - 24a7a2239d5286c4ca609f22f4a2f871
@@ -129,9 +133,10 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: c01fc8bcb512cb14d9e6d54b097d7cd6
   m_FloatValues:
+    4fa9f6431045430459330ea0255776d8: -10
     6107faf66208f79418450d7ff6d0dfcc: 1
-    d70f6507e31f7e04ab77df9022e0ad9a: -10
-    19754358ec16c0843acb39b6631b9487: -0.35361943
+    d70f6507e31f7e04ab77df9022e0ad9a: 0
+    19754358ec16c0843acb39b6631b9487: -10.002738
     db57d858c0ab8e447a26f56eadc9b5d6: 0.67
   m_TransitionOverrides: {}
 --- !u!244 &8886167932834771134

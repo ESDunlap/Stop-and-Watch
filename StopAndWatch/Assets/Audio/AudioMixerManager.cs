@@ -43,4 +43,19 @@ public class AudioMixerManager : MonoBehaviour
             audioMixer.SetFloat("Paused", currentPitch);
         }
     }
+
+    public void changeMasterVolume(float newVolume)
+    {
+        audioMixer.SetFloat("MasterVolume", newVolume);
+    }
+
+    public void changeBackgroundVolume(float newVolume)
+    {
+        audioMixer.SetFloat("BackgroundVolume", newVolume);
+    }
+
+    public void changeSceneVolume(float newVolume)
+    {
+        audioMixer.SetFloat("SceneVolume", newVolume);
+    }
 }
