@@ -46,16 +46,17 @@ public class AudioMixerManager : MonoBehaviour
 
     public void changeMasterVolume(float newVolume)
     {
-        audioMixer.SetFloat("MasterVolume", newVolume);
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(newVolume)*20);
     }
 
     public void changeBackgroundVolume(float newVolume)
     {
-        audioMixer.SetFloat("BackgroundVolume", newVolume);
+        audioMixer.SetFloat("BackgroundVolume", Mathf.Log10(newVolume) * 20);
+        audioMixer.SetFloat("ClockBackgroundVolume", Mathf.Log10(newVolume) * 20);
     }
 
     public void changeSceneVolume(float newVolume)
     {
-        audioMixer.SetFloat("SceneVolume", newVolume);
+        audioMixer.SetFloat("SceneVolume", Mathf.Log10(newVolume) * 20);
     }
 }

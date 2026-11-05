@@ -10,7 +10,7 @@ public class ElevatorNoise : MonoBehaviour
     private void Awake()
     {
 
-        elevatorNoise = gameObject.GetComponent<AudioSource>();
+        elevatorNoise = gameObject.GetComponentInChildren<AudioSource>();
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
     }
@@ -20,6 +20,7 @@ public class ElevatorNoise : MonoBehaviour
         if (!elevatorNoise.isPlaying)
         {
             elevatorNoise.Play();
+            elevatorNoise.time = Random.RandomRange(0f, 3f);
         }
     }
 
@@ -49,7 +50,7 @@ public class ElevatorNoise : MonoBehaviour
         }
         else if (!paused && (currentPitch < 1))
         {
-            currentPitch += Time.deltaTime;
+            currentPitch += Time.deltaTime*2;
             if (currentPitch > 1)
                 currentPitch = 1;
             elevatorNoise.pitch = currentPitch;
