@@ -12233,6 +12233,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 100896996780685917, guid: b9668e76ed9c5b44aa80c9f6567886d7, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100896996780685917, guid: b9668e76ed9c5b44aa80c9f6567886d7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1043749761}
@@ -14332,6 +14336,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c9efc7d4c2c4670468b4292b834a491a, type: 2}
+    - target: {fileID: 2938760249641040763, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3628626255761454710, guid: 58a0d18d025369d4c9c8723a2a043c83, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.008883655
