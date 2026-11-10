@@ -15,6 +15,7 @@ public enum tutorialChecks
 
 public class HeroineTutorial : MonoBehaviour
 {
+    private InputManager _inputManager;
     private tutorialChecks currentTutorial = tutorialChecks.movementCheck;
     private Quaternion currentAngle;
     [SerializeField] private GameObject textBox;
@@ -27,6 +28,7 @@ public class HeroineTutorial : MonoBehaviour
     private bool currentlyPaused = false;
     private void Awake()
     {
+        _inputManager = FindFirstObjectByType<InputManager>();
         TimeBus.Subscribe(TimeType.PAUSE, Pause);
         TimeBus.Subscribe(TimeType.UNPAUSE, Unpause);
         currentAngle = transform.rotation;
@@ -48,7 +50,7 @@ public class HeroineTutorial : MonoBehaviour
     {
         if (currentTutorial == tutorialChecks.movementCheck)
         {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            if (_inputManager.getHorizontalAxis() != 0 || _inputManager.getVerticalAxis() != 0)
             {
                 checkMark.SetActive(true);
                 currentTutorial = tutorialChecks.noCheck;

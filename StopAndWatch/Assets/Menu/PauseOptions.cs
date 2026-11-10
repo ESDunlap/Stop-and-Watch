@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PauseOptions : MonoBehaviour
 {
+    private InputManager _inputManager;
     [SerializeField] private AudioMixer audioMixer;
     private bool currentlyMainPause = true;
     private List<GameObject> allMenus = new List<GameObject>();
@@ -14,6 +15,7 @@ public class PauseOptions : MonoBehaviour
 
     private void Awake()
     {
+        _inputManager = FindFirstObjectByType<InputManager>();
         allMenus.Add(mainMenu);
         allMenus.Add(settingsMenu);
         allMenus.Add(levelSelectMenu);
@@ -21,15 +23,17 @@ public class PauseOptions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && currentlyMainPause)
+        if (_inputManager.getEscape() && currentlyMainPause)
         {
             Unpause();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (_inputManager.getEscape())
         {
             mainMenuChange();
         }
     }
+
+
 
     public void mainMenuChange()
     {
@@ -62,11 +66,12 @@ public class PauseOptions : MonoBehaviour
         Debug.Log("This Runs");
     }
 
-    void Unpause()
+    public void Unpause()
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
         UnpauseMusic();
+        _inputManager.unpauseControls();
     }
 
     void UnpauseMusic()

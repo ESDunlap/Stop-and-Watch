@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class HeroineNonMovement : MonoBehaviour
 {
+    private InputManager _inputManager;
     private bool timeStopped = false;
     private float restartTimer = 0f;
+
+    void Start()
+    {
+        _inputManager = FindFirstObjectByType<InputManager>();
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (_inputManager.getPause())
         {
             if (timeStopped)
             {
@@ -23,7 +29,7 @@ public class HeroineNonMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (_inputManager.getRestarting())
         {
             restartTimer += Time.deltaTime;
             if (restartTimer > 1f)

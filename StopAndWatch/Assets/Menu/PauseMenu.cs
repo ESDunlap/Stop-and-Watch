@@ -3,14 +3,19 @@ using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
+    private InputManager _inputManager;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private AudioMixer audioMixer;
-
+    private void Start()
+    {
+        _inputManager = FindFirstObjectByType<InputManager>();
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (_inputManager.getEscape())
         {
             Pause();
+            _inputManager.pauseControls();
         }
     }
 

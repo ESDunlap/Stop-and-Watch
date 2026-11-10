@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class HeroineController : MonoBehaviour
 {
+    private InputManager _inputManager;
     public float walkingSpeed = 2.0f;
     public float runningSpeed = 4.0f;
     public float diveForce = 20f;
@@ -32,6 +33,7 @@ public class HeroineController : MonoBehaviour
 
     private void Start()
     {
+        _inputManager = FindFirstObjectByType<InputManager>();
         _heroineStateContext = new HeroineStateContext(this);
         _standingState = gameObject.AddComponent<HeroineStandingState>();
         _sprintingState = gameObject.AddComponent<HeroineSprintingState>();
@@ -50,15 +52,15 @@ public class HeroineController : MonoBehaviour
     private void FixedUpdate()
     {
         //Gathering inputs
-        vInput = Input.GetAxis("Vertical");
-        hInput = Input.GetAxis("Horizontal");
+        vInput = _inputManager.getVerticalAxis();
+        hInput = _inputManager.getHorizontalAxis();
         Vector3 completeMovement = new Vector3(hInput, 0, vInput).normalized;
         
 
         //If the dive is used
         if (dive)
         {
-            Vector3 diveDirection = new Vector3(Input.GetAxis("Horizontal") * diveForce, diveHeight, Input.GetAxis("Vertical") * diveForce);
+            Vector3 diveDirection = new Vector3(hInput * diveForce, diveHeight, vInput * diveForce);
             rigidBody.linearVelocity = new Vector3(0, 0, 0);
             Debug.Log(diveDirection);
             rigidBody.AddRelativeForce(diveDirection, ForceMode.Impulse);
@@ -80,7 +82,7 @@ public class HeroineController : MonoBehaviour
         }
         else
         {
-            Vector3 rotation = Vector3.up * Input.GetAxis("Debug Horizontal");
+            Vector3 rotation = Vector3.up * _inputManager.getHorizontalTurningAxis();
             Quaternion angleRot = Quaternion.Euler(rotation * keyboardSensitivity * Time.deltaTime);
             rigidBody.MoveRotation(rigidBody.rotation * angleRot);
         }
@@ -88,9 +90,10 @@ public class HeroineController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (_inputManager.getRightClickDown())
         {
-            mouseMovement += Input.GetAxis("Mouse X");
+            mouseMovement += _inputManager.getMouseHorizontal();
+            Debug.Log(mouseMovement);
         }
     }
 
