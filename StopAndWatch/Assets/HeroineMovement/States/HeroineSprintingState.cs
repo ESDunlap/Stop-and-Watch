@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class HeroineSprintingState : MonoBehaviour, IHeroineState
 {
+    private InputManager _inputManager;
     private HeroineController _heroineController;
 
     public void Handle(HeroineController heroineController)
     {
         if (!_heroineController)
             _heroineController = heroineController;
+        _inputManager = FindFirstObjectByType<InputManager>();
         _heroineController.currentSpeed = _heroineController.runningSpeed;
     }
     void FixedUpdate()
@@ -15,7 +17,7 @@ public class HeroineSprintingState : MonoBehaviour, IHeroineState
         if (_heroineController)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
-            if (Input.GetKey(KeyCode.Space))
+            if (_inputManager.getJumping())
             {
                 _heroineController.rigidBody.AddForce(Vector3.up * _heroineController.jumpHeight, ForceMode.Impulse);
                 _heroineController.Jumping();
@@ -26,7 +28,7 @@ public class HeroineSprintingState : MonoBehaviour, IHeroineState
                 _heroineController.Jumping();
                 _heroineController = null;
             }
-            else if (!Input.GetKey(KeyCode.LeftShift))
+            else if (!_inputManager.getRunning())
             {
                 _heroineController.Standing();
                 _heroineController = null;

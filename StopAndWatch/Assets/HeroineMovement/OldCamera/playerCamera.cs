@@ -3,12 +3,14 @@ using System;
 using UnityEngine.UIElements;
 public class playerCamera : MonoBehaviour
 {
+    private InputManager _inputManager;
     private HeroineController controller;
     private Transform target;
     void Start()
     {
+        _inputManager = FindFirstObjectByType<InputManager>();
         target = GameObject.Find("Player").transform;
-        controller = FindObjectOfType<HeroineController>();
+        controller = FindFirstObjectByType<HeroineController>();
     }
 
     void LateUpdate()
@@ -16,7 +18,7 @@ public class playerCamera : MonoBehaviour
         //Makes the camera move around vertically
         if (Input.GetMouseButton(1))
         {
-            float rotateVertical = Input.GetAxis("Mouse Y");
+            float rotateVertical = _inputManager.getVerticalAxis();
             if (!((Mathf.Sign(rotateVertical) == -1) && (this.transform.localPosition.y) > 5))
                 transform.localPosition -= Vector3.up * rotateVertical * Time.deltaTime * 100f;
             //((Mathf.Sign(rotateVertical) == -1) && (this.transform.localPosition.y) > -1000))

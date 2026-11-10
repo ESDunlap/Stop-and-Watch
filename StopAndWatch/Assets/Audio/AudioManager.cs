@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         audioMixer.GetFloat("ClockBackgroundPitch", out currentPitch);
         if (currentlyPaused && (currentPitch > 0))
         {
-            currentPitch -= Time.deltaTime/4;
+            currentPitch -= Time.deltaTime/3;
             if (currentPitch < 0)
                 currentPitch = 0;
             audioMixer.SetFloat("ClockBackgroundPitch", currentPitch);

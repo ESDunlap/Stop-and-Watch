@@ -1,10 +1,11 @@
 # Stop-and-Watch
 <img width="800" height="600" alt="GameLoop" src="https://github.com/user-attachments/assets/384e340f-d435-4d84-85ef-98d43ec14e79" />
 
-# Changelog 0.8.4
-Fixed Audio Sliders
-Fixed Elevator Volume
-Created Sound Effect for Time Pausing
+# Changelog 0.8.5
+Remade input system in order to make changes easier  
+Implemented Y-axis switching  
+Implemented Level selection  
+Fixed being able to move while in menus  
 
 # Build  
 https://esdunlap.github.io/Stop-and-Watch/

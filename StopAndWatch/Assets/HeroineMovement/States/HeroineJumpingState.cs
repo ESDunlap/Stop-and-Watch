@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeroineJumpingState : MonoBehaviour, IHeroineState
 {
+    private InputManager _inputManager;
     private HeroineController _heroineController;
     float timer = 0;
 
@@ -9,6 +11,8 @@ public class HeroineJumpingState : MonoBehaviour, IHeroineState
     {
         if (!_heroineController)
             _heroineController = heroineController;
+        _inputManager = FindFirstObjectByType<InputManager>();
+
         timer = 0;
     }
 
@@ -28,7 +32,7 @@ public class HeroineJumpingState : MonoBehaviour, IHeroineState
                 _heroineController.Falling();
                 _heroineController = null;
             }*/
-            else if (Input.GetKey(KeyCode.Space) && timer >= _heroineController.diveTime)
+            else if (_inputManager.getJumping() && timer >= _heroineController.diveTime)
             {
                 _heroineController.Diving();
                 _heroineController = null;
