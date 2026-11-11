@@ -123,6 +123,12 @@ public class InputManager : MonoBehaviour
         return YAxis;
     }
 
+    public float getMouseScroll()
+    {
+        if (paused)
+            return 0;
+        return Input.mouseScrollDelta.y;
+    }
     public bool getRightClickDown()
     {
         return Input.GetMouseButton(1);
@@ -146,5 +152,10 @@ public class InputManager : MonoBehaviour
     public void unpauseControls()
     {
         paused = false;
+    }
+
+    public void disableEscape()
+    {
+        escape = KeyCode.None;
     }
 }

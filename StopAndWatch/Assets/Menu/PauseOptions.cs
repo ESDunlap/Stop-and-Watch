@@ -33,8 +33,6 @@ public class PauseOptions : MonoBehaviour
         }
     }
 
-
-
     public void mainMenuChange()
     {
         foreach (GameObject menu in allMenus)
