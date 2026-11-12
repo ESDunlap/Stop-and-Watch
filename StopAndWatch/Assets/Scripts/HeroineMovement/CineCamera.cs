@@ -18,8 +18,8 @@ public class CineCamera : MonoBehaviour
     void Update()
     {
         //Controls Zoom
-        if (cameraControl.Radius - Input.mouseScrollDelta.y > 0 && cameraControl.Radius - Input.mouseScrollDelta.y < 20)
-            cameraControl.Radius -= Input.mouseScrollDelta.y;
+        if (cameraControl.Radius - _inputManager.getMouseScroll() > 0 && cameraControl.Radius - _inputManager.getMouseScroll() < 20)
+            cameraControl.Radius -= _inputManager.getMouseScroll();
         //Controls Y rotation
         if (_inputManager.getRightClickDown())
         {

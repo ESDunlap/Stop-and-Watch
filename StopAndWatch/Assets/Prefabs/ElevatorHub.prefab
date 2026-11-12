@@ -30,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.91, y: 1.92, z: 25.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8861778030495932552}
   m_Father: {fileID: 0}
@@ -50,10 +50,9 @@ MonoBehaviour:
   speed: 10
   distance:
   - 20
-  - 10
-  - 5
-  waitingTime: 2
-  movementStyles: 000000000100000000000000
+  - 20
+  waitingTime: 1
+  movementStyles: 0000000001000000
   elevatorMovement: {fileID: 4439033501405640345}
   elevatorObject: {fileID: 2035031829777922550}
   railingConstructionLocation: {x: 0, y: 0, z: 0}
@@ -114,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 470494523540217403, guid: 76c1d92c99e3602429923db839913694, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 470494523540217403, guid: 76c1d92c99e3602429923db839913694, type: 3}
       propertyPath: m_LocalPosition.z
@@ -148,6 +147,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1379761900057482323, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379761900057482323, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2503727583421150193, guid: 76c1d92c99e3602429923db839913694, type: 3}
       propertyPath: m_Size.y
       value: 0.8
@@ -156,10 +163,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator
       objectReference: {fileID: 0}
+    - target: {fileID: 6387041894068729568, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 143a0412c36b02746bedf92037e647db, type: 3}
+    - target: {fileID: 6387041894068729568, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387041894068729568, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: MinDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387041894068729568, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: DopplerLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387041894068729568, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7146220616718704098, guid: 76c1d92c99e3602429923db839913694, type: 3}
       propertyPath: m_Size.y
       value: 0.79
       objectReference: {fileID: 0}
+    - target: {fileID: 8075142702098042909, guid: 76c1d92c99e3602429923db839913694, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c9efc7d4c2c4670468b4292b834a491a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -15,12 +15,12 @@ public class PauseMenu : MonoBehaviour
         if (_inputManager.getEscape())
         {
             Pause();
-            _inputManager.pauseControls();
         }
     }
 
     void Pause()
     {
+        _inputManager.pauseControls();
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         PauseMusic();
