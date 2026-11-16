@@ -3,11 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class DoorExit : MonoBehaviour
 {
+    public WinScreen winScreen;
+
+    private void Awake()
+    {
+        winScreen = FindFirstObjectByType<WinScreen>(FindObjectsInactive.Include);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 2);
+            winScreen.gameObject.SetActive(true);
         }
     }
 }

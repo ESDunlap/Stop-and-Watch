@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (_inputManager.getEscape())
+        if (_inputManager.getEscape() && Time.timeScale != 0)
         {
             Pause();
         }
@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         PauseMusic();
+        Debug.Log("Running");
     }
 
     void PauseMusic()

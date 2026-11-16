@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
+    //Main Inputs
     private KeyCode moveForward = KeyCode.W;
     private KeyCode moveBack = KeyCode.S;
     private KeyCode moveRight = KeyCode.D;
@@ -17,9 +18,15 @@ public class InputManager : MonoBehaviour
     private KeyCode turnUp = KeyCode.UpArrow;
     private KeyCode turnDown = KeyCode.DownArrow;
 
+    //Changed Settings
     private bool bypassButtonDown = false;
     private bool paused = false;
     private bool mouseFlip = true;
+    private bool escapeDisabled = false;
+    private bool rightClickSwitched = false;
+    private bool runDefault = false;
+
+    //Main Input Gathering
     public int getVerticalAxis()
     {
         if (paused)
@@ -81,6 +88,8 @@ public class InputManager : MonoBehaviour
     {
         if (paused)
             return false;
+        if (runDefault)
+            return !Input.GetKey(running);
         return Input.GetKey(running);
     }
 
@@ -100,6 +109,8 @@ public class InputManager : MonoBehaviour
 
     public bool getEscape()
     {
+        if (escapeDisabled)
+            return false;
         return Input.GetKeyDown(escape);
     }
 
@@ -129,14 +140,12 @@ public class InputManager : MonoBehaviour
             return 0;
         return Input.mouseScrollDelta.y;
     }
+
     public bool getRightClickDown()
     {
+        if (rightClickSwitched)
+            return !Input.GetMouseButton(1);
         return Input.GetMouseButton(1);
-    }
-
-    public void flipMouseVertical()
-    {
-        mouseFlip = !mouseFlip;
     }
 
     public bool currentMouseVertical()
@@ -144,18 +153,52 @@ public class InputManager : MonoBehaviour
         return mouseFlip;
     }
 
+    public bool currentRightClickStatus()
+    {
+        return rightClickSwitched;
+    }
+
+    public bool currentRun()
+    {
+        return runDefault;
+    }
+
+    //Changing Controls
+
+    public void flipMouseVertical()
+    {
+        mouseFlip = !mouseFlip;
+    }
+
     public void pauseControls()
     {
         paused = true;
+        Debug.Log("This is running");
     }
 
     public void unpauseControls()
     {
         paused = false;
+        Debug.Log("This Runs");
     }
 
     public void disableEscape()
     {
-        escape = KeyCode.None;
+        escapeDisabled = true;
+    }
+
+    public void enableEscape()
+    {
+        escapeDisabled = false;
+    }
+
+    public void rightClickSwitch()
+    {
+        rightClickSwitched = !rightClickSwitched;
+    }
+
+    public void runSwitch()
+    {
+        runDefault = !runDefault;
     }
 }

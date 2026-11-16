@@ -61,7 +61,6 @@ public class PauseOptions : MonoBehaviour
         }
         levelSelectMenu.SetActive(true);
         currentlyMainPause = false;
-        Debug.Log("This Runs");
     }
 
     public void Unpause()

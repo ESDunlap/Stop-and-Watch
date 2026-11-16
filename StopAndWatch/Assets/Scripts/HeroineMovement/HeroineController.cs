@@ -51,6 +51,10 @@ public class HeroineController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_inputManager == null)
+        {
+            _inputManager = FindFirstObjectByType<InputManager>();
+        }
         //Gathering inputs
         vInput = _inputManager.getVerticalAxis();
         hInput = _inputManager.getHorizontalAxis();
