@@ -15,6 +15,10 @@ public class HeroineNonMovement : MonoBehaviour
     }
     void Update()
     {
+        if (_inputManager == null)
+        {
+            _inputManager = FindFirstObjectByType<InputManager>();
+        }
         if (_inputManager.getPause())
         {
             if (timeStopped)
